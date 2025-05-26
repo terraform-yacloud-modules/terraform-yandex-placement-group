@@ -4,11 +4,6 @@ variable "placement_group_name" {
   type        = string
 }
 
-variable "folder_id" {
-  description = "ID папки в Яндекс Облаке"
-  type        = string
-}
-
 variable "description" {
   description = "Описание группы размещения"
   type        = string
