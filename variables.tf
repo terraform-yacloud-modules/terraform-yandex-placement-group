@@ -5,8 +5,15 @@ variable "placement_group_name" {
 }
 
 variable "folder_id" {
-  description = "The ID of the Yandex Cloud folder where the placement group will be created."
+  description = <<EOF
+    (Optional) The ID of the Yandex Cloud Folder that the resources belongs to.
+
+    Allows to create bucket in different folder.
+    It will try to create bucket using IAM-token in provider config, not using access_key.
+    If omitted, folder_id specified in provider config and access_key is used.
+  EOF
   type        = string
+  default     = null
 }
 
 variable "description" {
