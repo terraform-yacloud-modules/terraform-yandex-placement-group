@@ -10,4 +10,11 @@ module "placement_group" {
     project     = "my-awesome-project"
     department  = "infrastructure"
   }
+  
+  timeouts = {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+
 }
