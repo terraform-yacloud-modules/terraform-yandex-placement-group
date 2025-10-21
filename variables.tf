@@ -27,3 +27,25 @@ variable "labels" {
   type        = map(string)
   default     = {}
 }
+
+variable "placement_strategy_spread" {
+  description = "Spread placement strategy for the placement group. Must be true or unset (conflicts with placement_strategy_partitions)."
+  type        = bool
+  default     = null
+}
+
+variable "placement_strategy_partitions" {
+  description = "Number of partitions in the partition placement strategy for the placement group. Conflicts with placement_strategy_spread."
+  type        = number
+  default     = null
+}
+
+variable "timeouts" {
+  description = "Timeout configuration for placement group operations"
+  type = object({
+    create = optional(string)
+    delete = optional(string)
+    update = optional(string)
+  })
+  default = null
+}
