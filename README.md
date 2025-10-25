@@ -43,6 +43,9 @@ No modules.
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | (Optional) The ID of the Yandex Cloud Folder that the resources belongs to.<br/><br/>    Allows to create bucket in different folder.<br/>    It will try to create bucket using IAM-token in provider config, not using access\_key.<br/>    If omitted, folder\_id specified in provider config and access\_key is used. | `string` | `null` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | A set of key-value pairs (labels) to apply to the placement group. Useful for organizing, filtering, and managing resources. | `map(string)` | `{}` | no |
 | <a name="input_placement_group_name"></a> [placement\_group\_name](#input\_placement\_group\_name) | The name of the placement group. Must be unique within the folder and helps identify the group in the Yandex Cloud console. | `string` | n/a | yes |
+| <a name="input_placement_strategy_partitions"></a> [placement\_strategy\_partitions](#input\_placement\_strategy\_partitions) | Number of partitions in the partition placement strategy for the placement group. Conflicts with placement\_strategy\_spread. | `number` | `null` | no |
+| <a name="input_placement_strategy_spread"></a> [placement\_strategy\_spread](#input\_placement\_strategy\_spread) | Spread placement strategy for the placement group. Must be true or unset (conflicts with placement\_strategy\_partitions). | `bool` | `null` | no |
+| <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout configuration for placement group operations | <pre>object({<br/>    create = optional(string)<br/>    delete = optional(string)<br/>    update = optional(string)<br/>  })</pre> | `null` | no |
 
 ## Outputs
 
