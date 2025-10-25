@@ -6,8 +6,8 @@ resource "yandex_compute_placement_group" "placement_group" {
   description = var.description
   labels      = var.labels
 
-  placement_strategy_spread      = var.placement_strategy_spread
-  placement_strategy_partitions  = var.placement_strategy_partitions
+  placement_strategy_spread     = var.placement_strategy_spread
+  placement_strategy_partitions = var.placement_strategy_partitions
 
   dynamic "timeouts" {
     for_each = var.timeouts != null ? [1] : []
