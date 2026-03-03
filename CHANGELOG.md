@@ -1,3 +1,10 @@
+## v0.37.0 - 2026-03-03
+### Chores
+- b753856 chore(deps): bump hashicorp/setup-terraform from 3 to 4
+
+### Miscellaneous
+- 1b3abf7 Merge pull request [#39](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/39) from terraform-yacloud-modules/dependabot/github_actions/hashicorp/setup-terraform-4
+
 ## v0.36.0 - 2026-02-24
 ### Chores
 - a9814ee chore(deps): bump kvendingoldo/git-flow-action from 2.2.0 to 2.16.0 ([#38](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/38))
