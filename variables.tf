@@ -15,13 +15,7 @@ variable "placement_group_name" {
 }
 
 variable "folder_id" {
-  description = <<EOF
-    (Optional) The ID of the Yandex Cloud Folder that the resources belongs to.
-
-    Allows to create bucket in different folder.
-    It will try to create bucket using IAM-token in provider config, not using access_key.
-    If omitted, folder_id specified in provider config and access_key is used.
-  EOF
+  description = "(Optional) The ID of the Yandex Cloud Folder for the placement group. If omitted, the folder from the provider configuration is used."
   type        = string
   default     = null
 }
@@ -39,7 +33,7 @@ variable "labels" {
 }
 
 variable "placement_strategy_spread" {
-  description = "Spread placement strategy for the placement group. Must be true or unset (conflicts with placement_strategy_partitions)."
+  description = "Spread placement strategy: VMs are placed on different hardware. Set to true or leave unset (conflicts with placement_strategy_partitions). Exactly one of placement_strategy_spread or placement_strategy_partitions must be set."
   type        = bool
   default     = null
 
@@ -50,12 +44,12 @@ variable "placement_strategy_spread" {
 }
 
 variable "placement_strategy_partitions" {
-  description = "Number of partitions in the partition placement strategy for the placement group. Conflicts with placement_strategy_spread."
+  description = "Number of partitions in the partition placement strategy for the placement group (2-5). Conflicts with placement_strategy_spread. Exactly one of placement_strategy_spread or placement_strategy_partitions must be set."
   type        = number
   default     = null
 
   validation {
-    condition     = var.placement_strategy_partitions == null || (var.placement_strategy_partitions >= 2 && var.placement_strategy_partitions <= 5)
+    condition     = var.placement_strategy_partitions == null ? true : (var.placement_strategy_partitions >= 2 && var.placement_strategy_partitions <= 5)
     error_message = "Placement strategy partitions must be between 2 and 5, or null."
   }
 }
