@@ -1,11 +1,12 @@
-# Yandex Cloud <RESOURCE> Terraform module
+# Yandex Cloud Placement Group Terraform module
 
-Terraform module which creates Yandex Cloud <RESOURCE> resources.
+Terraform module that creates [Yandex Compute placement groups](https://yandex.cloud/docs/compute/concepts/placement-groups).
+Terraform resource: [yandex_compute_placement_group](https://yandex.cloud/ru/docs/terraform/resources/compute_placement_group).
 
 ## Examples
 
 Examples codified under
-the [`examples`](https://github.com/terraform-yacloud-modules/terraform-yandex-module-template/tree/main/examples) are intended
+the [`examples`](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/tree/main/examples) are intended
 to give users references for how to use the module(s) as well as testing/validating changes to the source code of the
 module. If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow
 maintainers to test your changes and to keep the examples up to date for users. Thank you!
@@ -40,11 +41,11 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_description"></a> [description](#input\_description) | An optional description of the placement group. Helps document the purpose and usage of the group. | `string` | `"Placement group created via Terraform"` | no |
-| <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | (Optional) The ID of the Yandex Cloud Folder that the resources belongs to.<br/><br/>    Allows to create bucket in different folder.<br/>    It will try to create bucket using IAM-token in provider config, not using access\_key.<br/>    If omitted, folder\_id specified in provider config and access\_key is used. | `string` | `null` | no |
+| <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | (Optional) The ID of the Yandex Cloud Folder for the placement group. If omitted, the folder from the provider configuration is used. | `string` | `null` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | A set of key-value pairs (labels) to apply to the placement group. Useful for organizing, filtering, and managing resources. | `map(string)` | `{}` | no |
 | <a name="input_placement_group_name"></a> [placement\_group\_name](#input\_placement\_group\_name) | The name of the placement group. Must be unique within the folder and helps identify the group in the Yandex Cloud console. | `string` | n/a | yes |
-| <a name="input_placement_strategy_partitions"></a> [placement\_strategy\_partitions](#input\_placement\_strategy\_partitions) | Number of partitions in the partition placement strategy for the placement group. Conflicts with placement\_strategy\_spread. | `number` | `null` | no |
-| <a name="input_placement_strategy_spread"></a> [placement\_strategy\_spread](#input\_placement\_strategy\_spread) | Spread placement strategy for the placement group. Must be true or unset (conflicts with placement\_strategy\_partitions). | `bool` | `null` | no |
+| <a name="input_placement_strategy_partitions"></a> [placement\_strategy\_partitions](#input\_placement\_strategy\_partitions) | Number of partitions in the partition placement strategy for the placement group (2-5). Conflicts with placement\_strategy\_spread. Exactly one of placement\_strategy\_spread or placement\_strategy\_partitions must be set. | `number` | `null` | no |
+| <a name="input_placement_strategy_spread"></a> [placement\_strategy\_spread](#input\_placement\_strategy\_spread) | Spread placement strategy: VMs are placed on different hardware. Set to true or leave unset (conflicts with placement\_strategy\_partitions). Exactly one of placement\_strategy\_spread or placement\_strategy\_partitions must be set. | `bool` | `null` | no |
 | <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout configuration for placement group operations | <pre>object({<br/>    create = optional(string)<br/>    delete = optional(string)<br/>    update = optional(string)<br/>  })</pre> | `null` | no |
 
 ## Outputs
@@ -62,4 +63,4 @@ No modules.
 ## License
 
 Apache-2.0 Licensed.
-See [LICENSE](https://github.com/terraform-yacloud-modules/terraform-yandex-module-template/blob/main/LICENSE).
+See [LICENSE](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/blob/main/LICENSE).
