@@ -1,9 +1,11 @@
+# Placement group — группа размещения ВМ для управления отказоустойчивостью.
+# Документация: https://yandex.cloud/ru/docs/terraform/resources/compute_placement_group
+
 module "placement_group" {
   source = "../"
 
   placement_group_name = "prod-placement-group"
 
-  # Опциональные параметры
   description = "Группа размещения для высокодоступных сервисов"
   labels = {
     environment = "production"
@@ -11,17 +13,15 @@ module "placement_group" {
     department  = "infrastructure"
   }
 
-  # Стратегия размещения - раскидывать по разным хостам
+  # Стратегия spread — ВМ размещаются на разных стойках (рекомендуется для отказоустойчивости)
   placement_strategy_spread = true
 
-  # Альтернативно: стратегия разделения на партиции
+  # Альтернатива: стратегия partitions (2–5 партиций)
   # placement_strategy_partitions = 3
 
-  # Таймауты операций
   timeouts = {
     create = "10m"
     delete = "5m"
     update = "5m"
   }
-
 }
