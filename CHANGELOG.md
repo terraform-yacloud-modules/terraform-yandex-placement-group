@@ -1,3 +1,7 @@
+## v0.38.0 - 2026-03-25
+### Chores
+- 09c122c chore(deps): bump actions/cache from 5.0.3 to 5.0.4 ([#41](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/41))
+
 ## v0.37.0 - 2026-03-18
 ### Bug Fixes
 - 8a2b657 fix: doc placement_strategy_spread ([#40](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/40))
