@@ -1,3 +1,7 @@
+## v0.41.0 - 2026-06-30
+### Chores
+- 93a679a chore(deps): bump actions/cache from 5.0.5 to 6.1.0 ([#44](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/44))
+
 ## v0.40.0 - 2026-06-23
 ### Chores
 - 4cecb2e chore(deps): bump actions/checkout from 6 to 7 ([#43](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/43))
