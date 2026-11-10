@@ -1,3 +1,7 @@
+## v0.56.0 - 2026-11-10
+### Chores
+- b3f2cc2 chore(deps): bump bridgecrewio/checkov-action ([#59](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/59))
+
 ## v0.55.0 - 2026-11-10
 ### Bug Fixes
 - 38312fe fix(examples): add yandex provider configuration and module outputs ([#58](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/58))
