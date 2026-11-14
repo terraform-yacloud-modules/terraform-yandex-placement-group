@@ -54,6 +54,34 @@ variable "placement_strategy_partitions" {
   }
 }
 
+variable "iam_bindings" {
+  description = "Additional IAM bindings for the placement group as a map of binding name to role and members. Each binding grants one role to a list of members (users, groups or service accounts)."
+  type = map(object({
+    role    = string
+    members = list(string)
+  }))
+  default = {}
+
+  validation {
+    condition = alltrue([
+      for binding in values(var.iam_bindings) :
+      can(regex("^[a-z][a-z0-9]*(\\.[a-z][a-zA-Z0-9]*)+$", binding.role))
+    ])
+    error_message = "IAM binding role must be a valid Yandex Cloud role identifier, for example `compute.viewer`."
+  }
+
+  validation {
+    condition = alltrue([
+      for binding in values(var.iam_bindings) :
+      length(binding.members) > 0 && alltrue([
+        for member in binding.members :
+        can(regex("^(system:allUsers|system:allAuthenticatedUsers|system:group:|userAccount:|serviceAccount:|federatedUser:|group:)", member))
+      ])
+    ])
+    error_message = "IAM binding members must be a non-empty list in valid format: system:allUsers, system:allAuthenticatedUsers, userAccount:{user_id}, serviceAccount:{service_account_id}, federatedUser:{federated_user_id} or group:{group_id}."
+  }
+}
+
 variable "timeouts" {
   description = "Timeout configuration for placement group operations"
   type = object({
@@ -64,7 +92,7 @@ variable "timeouts" {
   default = null
 
   validation {
-    condition = var.timeouts == null || alltrue([
+    condition = var.timeouts == null ? true : alltrue([
       for k, v in var.timeouts : v == null || can(regex("^\\d+[smh]$", v))
     ])
     error_message = "Timeout values must be in format like '10m', '30s', '1h' or be null."

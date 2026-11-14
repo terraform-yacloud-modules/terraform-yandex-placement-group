@@ -18,3 +18,11 @@ resource "yandex_compute_placement_group" "placement_group" {
     }
   }
 }
+
+resource "yandex_compute_placement_group_iam_binding" "additional" {
+  for_each = var.iam_bindings
+
+  placement_group_id = yandex_compute_placement_group.placement_group.id
+  role               = each.value.role
+  members            = each.value.members
+}
