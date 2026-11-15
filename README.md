@@ -15,14 +15,14 @@ maintainers to test your changes and to keep the examples up to date for users. 
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
 | <a name="requirement_yandex"></a> [yandex](#requirement\_yandex) | >= 0.72.0 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_yandex"></a> [yandex](#provider\_yandex) | >= 0.72.0 |
 
 ## Modules
@@ -32,16 +32,18 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [yandex_compute_placement_group.placement_group](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/compute_placement_group) | resource |
+| [yandex_compute_placement_group_iam_binding.additional](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/compute_placement_group_iam_binding) | resource |
 | [yandex_client_config.client](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/data-sources/client_config) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_description"></a> [description](#input\_description) | An optional description of the placement group. Helps document the purpose and usage of the group. | `string` | `"Placement group created via Terraform"` | no |
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | (Optional) The ID of the Yandex Cloud Folder for the placement group. If omitted, the folder from the provider configuration is used. | `string` | `null` | no |
+| <a name="input_iam_bindings"></a> [iam\_bindings](#input\_iam\_bindings) | Additional IAM bindings for the placement group as a map of binding name to role and members. Each binding grants one role to a list of members (users, groups or service accounts). | <pre>map(object({<br/>    role    = string<br/>    members = list(string)<br/>  }))</pre> | `{}` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | A set of key-value pairs (labels) to apply to the placement group. Useful for organizing, filtering, and managing resources. | `map(string)` | `{}` | no |
 | <a name="input_placement_group_name"></a> [placement\_group\_name](#input\_placement\_group\_name) | The name of the placement group. Must be unique within the folder and helps identify the group in the Yandex Cloud console. | `string` | n/a | yes |
 | <a name="input_placement_strategy_partitions"></a> [placement\_strategy\_partitions](#input\_placement\_strategy\_partitions) | Number of partitions in the partition placement strategy for the placement group (2-5). Conflicts with placement\_strategy\_spread. Exactly one of placement\_strategy\_spread or placement\_strategy\_partitions must be set. | `number` | `null` | no |
@@ -51,13 +53,16 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_created_at"></a> [created\_at](#output\_created\_at) | The timestamp when the placement group was created in Yandex Cloud. |
 | <a name="output_description"></a> [description](#output\_description) | The description of the placement group, if provided during creation. |
 | <a name="output_folder_id"></a> [folder\_id](#output\_folder\_id) | The ID of the Yandex Cloud folder where the placement group is located. |
+| <a name="output_iam_binding_ids"></a> [iam\_binding\_ids](#output\_iam\_binding\_ids) | A map of additional IAM binding names to the identifiers of the created placement group IAM bindings. |
 | <a name="output_id"></a> [id](#output\_id) | The unique identifier of the created placement group in Yandex Cloud. |
 | <a name="output_labels"></a> [labels](#output\_labels) | A map of labels (key-value pairs) applied to the placement group for organization and management purposes. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the created placement group as specified in the configuration. |
+| <a name="output_placement_strategy_partitions"></a> [placement\_strategy\_partitions](#output\_placement\_strategy\_partitions) | The number of partitions in the partition placement strategy of the placement group, or null when the spread strategy is used. |
+| <a name="output_placement_strategy_spread"></a> [placement\_strategy\_spread](#output\_placement\_strategy\_spread) | The spread placement strategy value of the placement group: true when virtual machines are spread across different hardware, otherwise null. |
 <!-- END_TF_DOCS -->
 
 ## License
