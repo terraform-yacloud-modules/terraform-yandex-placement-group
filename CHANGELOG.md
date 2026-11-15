@@ -1,3 +1,7 @@
+## v0.57.0 - 2026-11-15
+### Features
+- 0b1ca13 feat: add IAM bindings support and placement strategy outputs ([#60](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/60))
+
 ## v0.56.0 - 2026-11-10
 ### Chores
 - b3f2cc2 chore(deps): bump bridgecrewio/checkov-action ([#59](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/59))
