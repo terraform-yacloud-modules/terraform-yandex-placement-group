@@ -1,3 +1,7 @@
+## v0.59.0 - 2026-11-18
+### Miscellaneous
+- a215dee ci: run semver job only on push to main ([#62](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/62))
+
 ## v0.58.0 - 2026-11-17
 ### Chores
 - 62aeaf6 chore(deps): bump bridgecrewio/checkov-action ([#61](https://github.com/terraform-yacloud-modules/terraform-yandex-placement-group/pull/61))
