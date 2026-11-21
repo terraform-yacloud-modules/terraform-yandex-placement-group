@@ -1,6 +1,7 @@
 # Complete example
 
-Creates a placement group with the partition placement strategy plus additional IAM bindings.
+Creates a compute placement group with the partition placement strategy and a disk placement group,
+plus additional IAM bindings for both.
 
 ## Usage
 
@@ -13,9 +14,11 @@ terraform apply
 
 This example demonstrates all module features:
 
-- placement group with description, labels, explicit folder and timeouts;
+- compute placement group with description, labels, explicit folder and timeouts;
 - partition placement strategy (`placement_strategy_partitions`);
 - additional IAM bindings for several roles (`iam_bindings`);
-- module outputs for the placement strategy and IAM binding identifiers.
+- disk placement group for non-replicated disks (`create_disk_placement_group`) in `ru-central1-a`
+  with description, labels, timeouts and its own IAM bindings;
+- module outputs for the placement strategies, disk placement group and IAM binding identifiers.
 
 Note that this example creates service accounts. Run `terraform destroy` when you don't need these resources.

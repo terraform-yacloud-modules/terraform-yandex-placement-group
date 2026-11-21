@@ -14,6 +14,10 @@ resource "yandex_iam_service_account" "editor" {
   name = "complete-placement-group-editor"
 }
 
+resource "yandex_iam_service_account" "disk_viewer" {
+  name = "complete-disk-placement-group-viewer"
+}
+
 module "placement_group" {
   source = "../../"
 
@@ -47,6 +51,33 @@ module "placement_group" {
     editor = {
       role    = "compute.editor"
       members = ["serviceAccount:${yandex_iam_service_account.editor.id}"]
+    }
+  }
+
+  # Группа размещения дисков (disk placement group) для нереплицируемых дисков.
+  # Это отдельный тип группы размещения, он создаётся вместе с группой размещения ВМ.
+  create_disk_placement_group      = true
+  disk_placement_group_name        = "complete-disk-placement-group"
+  disk_placement_group_zone        = "ru-central1-a"
+  disk_placement_group_description = "Группа размещения дисков для нереплицируемых дисков"
+  disk_placement_group_labels = {
+    environment = "test"
+    project     = "my-awesome-project"
+    department  = "infrastructure"
+    example     = "complete"
+  }
+
+  disk_placement_group_timeouts = {
+    create = "10m"
+    delete = "5m"
+    read   = "5m"
+    update = "5m"
+  }
+
+  disk_placement_group_iam_bindings = {
+    viewer = {
+      role    = "compute.viewer"
+      members = ["serviceAccount:${yandex_iam_service_account.disk_viewer.id}"]
     }
   }
 }
