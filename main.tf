@@ -26,3 +26,31 @@ resource "yandex_compute_placement_group_iam_binding" "additional" {
   role               = each.value.role
   members            = each.value.members
 }
+
+resource "yandex_compute_disk_placement_group" "disk" {
+  count = var.create_disk_placement_group ? 1 : 0
+
+  name        = local.disk_placement_group_name
+  folder_id   = local.folder_id
+  description = var.disk_placement_group_description
+  labels      = var.disk_placement_group_labels
+  zone        = var.disk_placement_group_zone
+
+  dynamic "timeouts" {
+    for_each = var.disk_placement_group_timeouts != null ? [1] : []
+    content {
+      create = try(var.disk_placement_group_timeouts.create, null)
+      delete = try(var.disk_placement_group_timeouts.delete, null)
+      read   = try(var.disk_placement_group_timeouts.read, null)
+      update = try(var.disk_placement_group_timeouts.update, null)
+    }
+  }
+}
+
+resource "yandex_compute_disk_placement_group_iam_binding" "disk" {
+  for_each = var.create_disk_placement_group ? var.disk_placement_group_iam_bindings : {}
+
+  disk_placement_group_id = yandex_compute_disk_placement_group.disk[0].id
+  role                    = each.value.role
+  members                 = each.value.members
+}

@@ -42,3 +42,28 @@ output "created_at" {
   description = "The timestamp when the placement group was created in Yandex Cloud."
   value       = module.placement_group.created_at
 }
+
+output "disk_placement_group_id" {
+  description = "The unique identifier of the created disk placement group in Yandex Cloud."
+  value       = module.placement_group.disk_placement_group_id
+}
+
+output "disk_placement_group_name" {
+  description = "The name of the created disk placement group."
+  value       = module.placement_group.disk_placement_group_name
+}
+
+output "disk_placement_group_zone" {
+  description = "The availability zone of the created disk placement group."
+  value       = module.placement_group.disk_placement_group_zone
+}
+
+output "disk_placement_group_status" {
+  description = "The current status of the created disk placement group."
+  value       = module.placement_group.disk_placement_group_status
+}
+
+output "disk_placement_group_iam_binding_ids" {
+  description = "A map of additional disk placement group IAM binding names to the created IAM binding identifiers."
+  value       = module.placement_group.disk_placement_group_iam_binding_ids
+}

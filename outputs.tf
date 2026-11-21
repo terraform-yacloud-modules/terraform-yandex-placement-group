@@ -42,3 +42,28 @@ output "iam_binding_ids" {
   description = "A map of additional IAM binding names to the identifiers of the created placement group IAM bindings."
   value       = { for name, binding in yandex_compute_placement_group_iam_binding.additional : name => binding.id }
 }
+
+output "disk_placement_group_id" {
+  description = "The unique identifier of the created disk placement group in Yandex Cloud, or null when create_disk_placement_group is false."
+  value       = try(yandex_compute_disk_placement_group.disk[0].id, null)
+}
+
+output "disk_placement_group_name" {
+  description = "The name of the created disk placement group, or null when create_disk_placement_group is false."
+  value       = try(yandex_compute_disk_placement_group.disk[0].name, null)
+}
+
+output "disk_placement_group_zone" {
+  description = "The availability zone of the created disk placement group, or null when create_disk_placement_group is false."
+  value       = try(yandex_compute_disk_placement_group.disk[0].zone, null)
+}
+
+output "disk_placement_group_status" {
+  description = "The current status of the created disk placement group, or null when create_disk_placement_group is false."
+  value       = try(yandex_compute_disk_placement_group.disk[0].status, null)
+}
+
+output "disk_placement_group_iam_binding_ids" {
+  description = "A map of additional disk placement group IAM binding names to the identifiers of the created IAM bindings."
+  value       = { for name, binding in yandex_compute_disk_placement_group_iam_binding.disk : name => binding.id }
+}
